@@ -1,0 +1,15 @@
+#+TITLE: linux kernel knowledge inside docker
+#+AUTHOR: Lin Chen
+* Namespaces
+** UTS
+show [[file:uts_namespace.c][uts]]
+
+#+BEGIN_EXAMPLE 
+clin@lima-default:/tmp/lima/container-core$ sudo ./uts_namespace.o
+main process
+in child process
+# hostname
+new_host
+# exit
+end process
+#+END_EXAMPLE
