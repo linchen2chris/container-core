@@ -14,13 +14,14 @@ char *const child_args[] = {"/bin/sh", NULL};
 
 int child_main(void* args) {
   printf("in child process\n");
+  sethostname("new_host", 8);
   execv(child_args[0], child_args);
   return 1;
 };
 
 int main(int argc, char *argv[]) {
   printf("main process \n");
-  int child_pid=clone(child_main, child_stack+STACK_SIZE, SIGCHLD,NULL);
+  int child_pid=clone(child_main, child_stack+STACK_SIZE, SIGCHLD|CLONE_NEWUTS,NULL);
   waitpid(child_pid,NULL, 0);
   printf("end process \n");
   return 0;
