@@ -10,7 +10,7 @@
 
 static char child_stack[STACK_SIZE];
 
-char *const child_args[] = {"/bin/sh", NULL};
+char *const child_args[] = {"/bin/bash", NULL};
 
 int child_main(void* args) {
   printf("in child process\n");
@@ -21,7 +21,7 @@ int child_main(void* args) {
 
 int main(int argc, char *argv[]) {
   printf("main process \n");
-  int child_pid=clone(child_main, child_stack+STACK_SIZE, SIGCHLD|CLONE_NEWUTS,NULL);
+  int child_pid=clone(child_main, child_stack+STACK_SIZE, SIGCHLD|CLONE_NEWUTS|CLONE_NEWIPC,NULL);
   waitpid(child_pid,NULL, 0);
   printf("end process \n");
   return 0;

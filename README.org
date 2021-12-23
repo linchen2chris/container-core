@@ -13,3 +13,31 @@ new_host
 # exit
 end process
 #+END_EXAMPLE
+
+** IPC
+add IPC isolate to ~uts_namespace.c~ file
+
+#+BEGIN_EXAMPLE
+clin@lima-default:/tmp/lima/container-core$ ipcmk -Q   =======> create a new MQ
+Message queue id: 0
+clin@lima-default:/tmp/lima/container-core$ ipcs -q    =======> you can see the new MQ
+
+------ Message Queues --------
+key        msqid      owner      perms      used-bytes   messages
+0x0e2fdfcc 0          clin       644        0            0
+
+clin@lima-default:/tmp/lima/container-core$ sudo ./ipc_namespace.o
+main process
+in child process
+root@new_host:/tmp/lima/container-core# ipcs -q        ========> in child process you can't see it
+
+------ Message Queues --------
+key        msqid      owner      perms      used-bytes   messages
+
+root@new_host:/tmp/lima/container-core# exit
+exit
+end process
+clin@lima-default:/tmp/lima/container-core$
+#+END_EXAMPLE
+
+
