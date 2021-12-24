@@ -41,3 +41,20 @@ clin@lima-default:/tmp/lima/container-core$
 #+END_EXAMPLE
 
 
+** PID
+#+BEGIN_EXAMPLE
+clin@lima-default:/tmp/lima/container-core$ sudo ./pid_namespace.o
+main process
+in child process
+root@new_host:/tmp/lima/container-core# echo $$
+1
+root@new_host:/tmp/lima/container-core# exit
+exit
+end process
+clin@lima-default:/tmp/lima/container-core$ echo $$
+1929
+clin@lima-default:/tmp/lima/container-core$
+#+END_EXAMPLE
+
+
+

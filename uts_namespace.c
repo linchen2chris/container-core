@@ -21,7 +21,7 @@ int child_main(void* args) {
 
 int main(int argc, char *argv[]) {
   printf("main process \n");
-  int child_pid=clone(child_main, child_stack+STACK_SIZE, SIGCHLD|CLONE_NEWUTS|CLONE_NEWIPC,NULL);
+  int child_pid = clone(child_main, child_stack+STACK_SIZE, SIGCHLD|CLONE_NEWUTS|CLONE_NEWIPC|CLONE_NEWPID,NULL);
   waitpid(child_pid,NULL, 0);
   printf("end process \n");
   return 0;
